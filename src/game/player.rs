@@ -4,7 +4,7 @@ use crate::SCREEN_HEIGHT;
 
 pub struct Player {
     x: f32,
-    y: f32,
+    pub y: f32,
     velocity: f32,
 }
 
@@ -18,10 +18,14 @@ impl Player {
     }
     pub fn gravity_move(&mut self, ctx: &mut BTerm) {
         if self.velocity < 2.0 {
-            self.velocity += 0.1;
+            self.velocity += 0.05;
         }
         self.y += self.velocity;
-        self.y = self.y.clamp(0.0, SCREEN_HEIGHT + 2.0);
+        self.y = self.y.clamp(1.0, SCREEN_HEIGHT + 5.);
+    }
+    pub fn flap(&mut self, ctx: &mut BTerm) {
+        self.velocity -= 0.5;
+        self.velocity = self.velocity.clamp(-1., 2.);
     }
     pub fn render_player(&mut self, ctx: &mut BTerm) {
         let mut draw_player = DrawBatch::new();
