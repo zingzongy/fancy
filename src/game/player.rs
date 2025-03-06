@@ -3,7 +3,7 @@ use bracket_lib::prelude::*;
 use crate::SCREEN_HEIGHT;
 
 pub struct Player {
-    x: f32,
+    pub x: f32,
     pub y: f32,
     velocity: f32,
 }
